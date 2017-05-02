@@ -28,8 +28,6 @@ Despite having the correct resolution, the output will be spatially coarse, sinc
 
 ![Fully convolutional network architecture](img/fcn.png)
 
-TODO remove fully connected from legend, add more labels to figure, add softmax layer for output
-
 This model architecture for semantic segmentation is known as a [Fully Convolutional Network](https://arxiv.org/abs/1605.06211) (FCN), and is very popular. It was originally proposed as an adaptation of the [VGG](https://arxiv.org/abs/1409.1556) recognition model, but can be applied in a straightforward manner to newer recognition models, such as [ResNets](https://arxiv.org/abs/1512.03385) which we used in our experiments. One advantage of the FCN over other architectures is that it is easy to initialize the bulk of the model using weights that were obtained from training on a large object recognition dataset such as [ImageNet]((http://www.image-net.org/)). This is often helpful when the size of the training set is small relative to the complexity of the model.
 
 Here is a code snippet that shows how to construct an FCN from a ResNet using Keras. It's remarkable how concisely this can be expressed and how closely the code matches the graphical representation.
@@ -139,7 +137,11 @@ The configuration file for this experiment can be found [here](https://github.co
 
 In addition to the Potsdam dataset, ISPRS released a dataset covering the town of Vaihingen, Germany. We ran an experiment using U-Net on the Vaihingen dataset resulting in 87.3% overall accuracy on the test set, but did not put further effort into improving upon this result. The configuration file for this experiment can be found [here](https://github.com/azavea/keras-semantic-segmentation/blob/develop/src/experiments/3_28_17/vaihingen_unet_all.json).
 
+As mentioned previously, we used NDVI as an input channel in some of our experiments because it tends to highlight vegetation, and two our labels include vegetation.
 
+![NDVI](img/ndvi.png)
+
+However, we weren't sure if it would actually improve accuracy, since NDVI is a function of red and infrared channels, and it's plausible that the network could discover its own version of NDVI. In order to isolate the influence of the NDVI variable we ran 5 experiments with red, green, and infrared, and 5 experiments with those input channels plus NDVI, keeping everything else the same. The difference in accuracies between the two experiments was not statistically significant, suggesting that there is no advantage to adding NDVI as an input channel.
 
 ### Visualization
 

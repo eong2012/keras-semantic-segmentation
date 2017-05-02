@@ -139,7 +139,7 @@ The configuration file for this experiment can be found [here](https://github.co
 
 In addition to the Potsdam dataset, ISPRS released a dataset covering the town of Vaihingen, Germany. We ran an experiment using U-Net on the Vaihingen dataset resulting in 87.3% overall accuracy on the test set, but did not put further effort into improving upon this result. The configuration file for this experiment can be found [here](https://github.com/azavea/keras-semantic-segmentation/blob/develop/src/experiments/3_28_17/vaihingen_unet_all.json).
 
-TODO talk about ndvi experiment which is still running
+
 
 ### Visualization
 
